@@ -66,7 +66,7 @@ for T in range(1, K + 1):
     for i in range(N):
         for j in range(M):
             if arr[i][j] <= 0: continue # 포탑이 아니면 스킵
-            if mx < arr[i][j] or (mn == arr[i][j] and mn_turn > turn[i][j]) or \
+            if mx < arr[i][j] or (mx == arr[i][j] and mn_turn > turn[i][j]) or \
                 (mx == arr[i][j] and mn_turn == turn[i][j] and ei + ej > i + j) or \
                 (mx == arr[i][j] and mn_turn == turn[i][j] and ei + ej == i + j and ej > j):
                 mx, mn_turn, ei, ej = arr[i][j], turn[i][j], i, j   # ei, ej 공격 대상자
