@@ -40,7 +40,7 @@ def bfs(si, sj, ei, ej):
 
 def bomb(si, sj, ei, ej):
     d = arr[si][sj]
-    arr[ei][ej] = max(0, arr[ei][ej])
+    arr[ei][ej] = max(0, arr[ei][ej] - d)
 
     for di, dj in ((0, 1), (1, 0), (0, -1), (-1, 0), (1, 1), (-1, -1), (1, -1), (-1, 1)):
         ni, nj = (ei + di) % N, (ej + dj) % M
@@ -87,5 +87,11 @@ for T in range(1, K + 1):
         for j in range(M):
             if arr[i][j] > 0 and (i, j) not in fset:
                 arr[i][j] += 1
+
+    cnt = N * M
+    for lst in arr:
+        cnt -= lst.count(0)
+    if cnt <= 1:    # 남은 포탑이 1 이하면 종료
+        break
 
 print(max(map(max, arr)))
