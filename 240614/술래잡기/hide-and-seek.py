@@ -66,7 +66,7 @@ for k in range(1, K + 1):   # k턴만큼 게임 진행
     tset = set(((ti, tj), (ti + tdi[td], tj + tdj[td]), (ti + tdi[td] * 2, tj + tdj[td] * 2)))
     for i in range(len(arr) - 1, -1, -1):
         if (arr[i][0], arr[i][1]) in tset and (arr[i][0], arr[i][1]) not in tree:
-            arr.pop()
+            arr.pop(i)
             ans += k
 
     # 도망자가 없다면 더이상 점수도 없음
