@@ -8,22 +8,22 @@ ei, ej = map(lambda x : int(x) - 1, input().split())
 arr[ei][ej] = -11
 
 def find_square(arr):
+    # [1] 비상구와 모든 사람간의 가장짧은 가로 또는 세로거리 구하기 => L
+    mn = N
+    for i in range(N):
+        for j in range(N):
+            if -11<arr[i][j]<0:     # 사람인 경우
+                mn=min(mn, max(abs(ei-i), abs(ej-j)))
 
-    for l in range(2, N):
+    # [2] (0,0)부터 순회하면서 길이 L인 정사각형에 비상구와 사람있는지 체크 => 리턴 L+1
+    for si in range(N-mn):
+        for sj in range(N-mn):                  # 가능한 모든 시작위치
+            if si<=ei<=si+mn and sj<=ej<=sj+mn: # 비상구가 포함된 사각형!
+                for i in range(si, si+mn+1):
+                    for j in range(sj, sj+mn+1):
+                        if -11<arr[i][j]<0:     # 사람인 경우 리턴!
+                            return si,sj,mn+1
 
-        for si in range(N - l):
-            for sj in range(N - l):
-                exit_flag = False
-                people_flag = False
-                for i in range(l):
-                    for j in range(l):
-                        if arr[si + i][sj + j] == -11:
-                            exit_flag = True
-                        elif arr[si + i][sj + j] < 0:
-                            people_flag = True
-
-                if exit_flag and people_flag:
-                    return (si, sj, l)
 
 
 def find_exit(arr):
