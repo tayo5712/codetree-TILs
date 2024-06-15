@@ -23,8 +23,6 @@ def find_square(arr):
                 if exit_flag and people_flag:
                     return si, sj, l + 1
 
-    print(si, sj, l)
-
 def find_exit(arr):
     for i in range(N):
         for j in range(N):
