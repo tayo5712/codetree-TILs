@@ -8,21 +8,22 @@ ei, ej = map(lambda x : int(x) - 1, input().split())
 arr[ei][ej] = -11
 
 def find_square(arr):
-    for l in range(2, N):
+    for l in range(1, N):
         for si in range(N - l):
             for sj in range(N - l):
                 exit_flag = False
                 people_flag = False
-                for i in range(l):
-                    for j in range(l):
+                for i in range(l + 1):
+                    for j in range(l + 1):
                         if arr[si + i][sj + j] == -11:
                             exit_flag = True
                         elif arr[si + i][sj + j] < 0:
                             people_flag = True
 
                 if exit_flag and people_flag:
-                    return (si, sj, l)
+                    return si, sj, l + 1
 
+    print(si, sj, l)
 
 def find_exit(arr):
     for i in range(N):
